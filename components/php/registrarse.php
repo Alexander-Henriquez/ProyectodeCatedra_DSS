@@ -1,6 +1,6 @@
 <?php
 // Incluimos la conexión a la base de datos
-include 'connect.php';
+include 'db_connection.php';
 
 // Extraemos los datos ingresados por el usuario 
 $nombre_completo = $_POST['nombre_completo'];
@@ -8,8 +8,6 @@ $correo = $_POST['correo'];
 $usuario = $_POST['usuario'];
 $contrasena = $_POST['contrasena'];
 
-
- 
 // Validar el formato de correo electrónico con expresiones regulares
 if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $correo)) {
     // Mostrar una alerta JavaScript
@@ -24,43 +22,36 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $contrasena)) {
     exit(); // Detener el proceso de registro
 }
 
-
-// Encriptación de la contraseña
+// Encriptamiento de contraseña
 $contrasena = hash('sha512', $contrasena);
 
+// Preparar el procedimiento almacenado "CrearUsuario"
+$query = "CALL CrearUsuario(:usuario, :correo, :contrasena)";
+$stmt = $conn->prepare($query);
 
-// Consultar la base de datos para verificar si el correo electrónico ya está registrado
-$query = "SELECT correo FROM usuarios WHERE correo = '$correo'";
-$resultado = mysqli_query($conn, $query);
+// Vincular parámetros
+$stmt->bindParam(':usuario', $usuario);
+$stmt->bindParam(':correo', $correo);
+$stmt->bindParam(':contrasena', $contrasena);
 
-// Verificar si se encontró algún resultado
-if (mysqli_num_rows($resultado) > 0) {
-    echo '<script>alert("Este correo electronico ya está registrado"); window.history.back();</script>';
-    exit(); // Detener el proceso de registro
-}
+// Ejecutar el procedimiento almacenado
+$stmt->execute();
 
-// Query a ejecutar, procedimiento almacenado "CrearUsuario"
-$query = "CALL CrearUsuario('$usuario', '$correo', '$contrasena')";
-
-// Ejecutar el query "Crear Usuario"
-$ejecutar = mysqli_query($conn, $query);
-
-// Mostrar un alerta según se haya creado o no el usuario y redirigir al login
-if($ejecutar){
+// Muestra una alerta según se creó o no el usuario y redirige al login
+if($stmt->rowCount() > 0) {
     echo '
         <script>
-            alert("Usuario creado exitosamente, por favor inicia sesión");
-            window.location = "../../login.php";
+            alert("Usuario creado exitosamente, por favor iniciar sesión");
+            window.location = "login.php";
          </script>
     ';
 } else {
     echo '
         <script>
             alert("Usuario no creado, inténtalo de nuevo");
-            window.location = "../../login.php";
+            window.location = "login.php";
         </script>
     ';
 }
 
-mysqli_close($conn);
 ?>
