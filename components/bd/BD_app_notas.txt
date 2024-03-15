@@ -1,0 +1,193 @@
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS app_notas;
+USE app_notas;
+
+-- Crear la tabla usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL
+);
+
+-- Crear la tabla notas
+CREATE TABLE IF NOT EXISTS notas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    titulo VARCHAR(255) NOT NULL,
+    contenido TEXT,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+-- Crear la tabla recordatorios
+CREATE TABLE IF NOT EXISTS recordatorios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    nota_id INT,
+    fecha_recordatorio DATETIME,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (nota_id) REFERENCES notas(id)
+);
+
+-- Insertar datos en la tabla usuarios
+INSERT INTO usuarios (nombre, correo, contrasena) VALUES 
+('Juan Pérez', 'juan@example.com', 'password123'),
+('María Gómez', 'maria@example.com', 'secreto456'),
+('Carlos Rodríguez', 'carlos@example.com', 'mi_clave'),
+('Nuevo Usuario', 'nuevo@correo.com', 'password123');
+
+-- Insertar datos en la tabla notas
+INSERT INTO notas (usuario_id, titulo, contenido, fecha_creacion) VALUES 
+(2, 'Recordatorio de María', 'Contenido de la nota de María', '2024-02-24 08:42:29'),
+(3, 'Mis pensamientos', 'Este es un recordatorio de Carlos', '2024-02-24 08:42:29'),
+(1, 'Nuevo Título', 'Nuevo contenido de la nota', '2024-02-24 15:16:18');
+
+-- Insertar datos en la tabla recordatorios
+INSERT INTO recordatorios (usuario_id, nota_id, fecha_recordatorio) VALUES 
+(2, 2, '2024-03-08 10:00:00'),
+(3, 3, '2024-03-02 08:00:00');
+
+-- Procedimiento almacenado para agregar una nota
+DELIMITER //
+CREATE PROCEDURE AgregarNota(
+    IN p_usuario_id INT,
+    IN p_titulo VARCHAR(255),
+    IN p_contenido TEXT
+)
+BEGIN
+    INSERT INTO notas (usuario_id, titulo, contenido)
+    VALUES (p_usuario_id, p_titulo, p_contenido);
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para agregar un recordatorio
+DELIMITER //
+CREATE PROCEDURE AgregarRecordatorio(
+    IN p_usuario_id INT,
+    IN p_nota_id INT,
+    IN p_fecha_recordatorio DATETIME
+)
+BEGIN
+    INSERT INTO recordatorios (usuario_id, nota_id, fecha_recordatorio)
+    VALUES (p_usuario_id, p_nota_id, p_fecha_recordatorio);
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para crear un usuario
+DELIMITER //
+CREATE PROCEDURE CrearUsuario(
+    IN p_nombre VARCHAR(255),
+    IN p_correo VARCHAR(255),
+    IN p_contrasena VARCHAR(255)
+)
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = p_correo) THEN
+        INSERT INTO usuarios (nombre, correo, contrasena)
+        VALUES (p_nombre, p_correo, p_contrasena);
+        SELECT 'Usuario creado exitosamente.' AS mensaje;
+    ELSE
+        SELECT 'El correo proporcionado ya está en uso. Elija otro correo.' AS mensaje;
+    END IF;
+END //
+DELIMITER ;
+-- Procedimiento almacenado para editar una nota
+DELIMITER //
+CREATE PROCEDURE EditarNota(
+    IN p_nota_id INT,
+    IN p_titulo VARCHAR(255),
+    IN p_contenido TEXT
+)
+BEGIN
+    UPDATE notas
+    SET titulo = p_titulo, contenido = p_contenido
+    WHERE id = p_nota_id;
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para editar un recordatorio
+DELIMITER //
+CREATE PROCEDURE EditarRecordatorio(
+    IN p_recordatorio_id INT,
+    IN p_fecha_recordatorio DATETIME
+)
+BEGIN
+    UPDATE recordatorios
+    SET fecha_recordatorio = p_fecha_recordatorio
+    WHERE id = p_recordatorio_id;
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para eliminar una nota
+DELIMITER //
+CREATE PROCEDURE EliminarNota(
+    IN p_nota_id INT
+)
+BEGIN
+    DELETE FROM recordatorios WHERE nota_id = p_nota_id;
+    DELETE FROM notas WHERE id = p_nota_id;
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para eliminar un recordatorio
+DELIMITER //
+CREATE PROCEDURE EliminarRecordatorio(
+    IN p_recordatorio_id INT
+)
+BEGIN
+    DELETE FROM recordatorios WHERE id = p_recordatorio_id;
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para obtener notas por usuario
+DELIMITER //
+CREATE PROCEDURE ObtenerNotasPorUsuario(
+    IN p_usuario_id INT
+)
+BEGIN
+    -- Seleccionar las notas para el usuario específico
+    SELECT titulo, contenido, fecha_creacion
+    FROM notas
+    WHERE usuario_id = p_usuario_id;
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para obtener recordatorios por fecha
+DELIMITER //
+CREATE PROCEDURE ObtenerRecordatoriosPorFecha(
+    IN p_usuario_id INT,
+    IN p_fecha_recordatorio DATETIME
+)
+BEGIN
+    -- Seleccionar los recordatorios para el usuario y la fecha específica
+    SELECT n.titulo, n.contenido, r.fecha_recordatorio
+    FROM recordatorios r
+    INNER JOIN notas n ON r.nota_id = n.id
+    WHERE r.usuario_id = p_usuario_id
+    AND DATE(r.fecha_recordatorio) = DATE(p_fecha_recordatorio);
+END //
+DELIMITER ;
+
+-- Procedimiento almacenado para verificar credenciales
+DELIMITER //
+CREATE PROCEDURE VerificarCredenciales(
+    IN p_correo VARCHAR(255),
+    IN p_contrasena VARCHAR(255),
+    OUT p_resultado INT
+)
+BEGIN
+    DECLARE usuario_id INT;
+
+    -- Verificar si las credenciales son válidas
+    SELECT id INTO usuario_id
+    FROM usuarios
+    WHERE correo = p_correo AND contrasena = p_contrasena;
+
+    -- Devolver el resultado (1 si las credenciales son válidas, 0 si no)
+    IF usuario_id IS NOT NULL THEN
+        SET p_resultado = 1;
+    ELSE
+        SET p_resultado = 0;
+    END IF;
+END //
+DELIMITER ;
