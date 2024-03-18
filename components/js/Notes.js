@@ -35,5 +35,23 @@ document.addEventListener("DOMContentLoaded", function() {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
     });
+
+    //Abrir modal
+
+// Obtener todos los elementos con la clase "modal"
+var modals = document.querySelectorAll("div.modal");
+
+// Iterar sobre cada modal
+modals.forEach(function(modal) {
+
+    modal.previousElementSibling.addEventListener('click', function() {
+        modal.style.display = "block";
+    });
+
+    modal.querySelector('.close').addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+});
+
 });
 
