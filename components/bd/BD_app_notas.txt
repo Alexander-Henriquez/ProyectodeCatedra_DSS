@@ -30,24 +30,6 @@ CREATE TABLE IF NOT EXISTS recordatorios (
     FOREIGN KEY (nota_id) REFERENCES notas(id)
 );
 
--- Insertar datos en la tabla usuarios
-INSERT INTO usuarios (nombre, correo, contrasena) VALUES 
-('Juan Pérez', 'juan@example.com', 'password123'),
-('María Gómez', 'maria@example.com', 'secreto456'),
-('Carlos Rodríguez', 'carlos@example.com', 'mi_clave'),
-('Nuevo Usuario', 'nuevo@correo.com', 'password123');
-
--- Insertar datos en la tabla notas
-INSERT INTO notas (usuario_id, titulo, contenido, fecha_creacion) VALUES 
-(2, 'Recordatorio de María', 'Contenido de la nota de María', '2024-02-24 08:42:29'),
-(3, 'Mis pensamientos', 'Este es un recordatorio de Carlos', '2024-02-24 08:42:29'),
-(1, 'Nuevo Título', 'Nuevo contenido de la nota', '2024-02-24 15:16:18');
-
--- Insertar datos en la tabla recordatorios
-INSERT INTO recordatorios (usuario_id, nota_id, fecha_recordatorio) VALUES 
-(2, 2, '2024-03-08 10:00:00'),
-(3, 3, '2024-03-02 08:00:00');
-
 -- Procedimiento almacenado para agregar una nota
 DELIMITER //
 CREATE PROCEDURE AgregarNota(
