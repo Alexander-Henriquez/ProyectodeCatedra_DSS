@@ -10,9 +10,28 @@ Bienvenido/a a Notas App, una aplicación que permite a los usuarios crear difer
 4. Explora las diferentes opciones para crear y organizar tus notas.
 5. El sistema de recordatorios para programar avisos importantes estara disponible en el segundo 50%.
 
-## Funcionalidades
+## Funcionalidades Primer 50%
 
-- Crear diferentes tipos de notas.
+- Crear diferentes tipos de notas y edicion de Notas.
+
+## Primer 50% de la Aplicación: Crear y Editar Notas
+
+Durante la primera mitad del desarrollo de esta aplicación, nos enfocamos en proporcionar a los usuarios la capacidad de crear y editar notas de manera eficiente. A continuación, se detallan los pasos para utilizar estas funcionalidades:
+
+1. Crear Notas:
+   - Para crear una nueva nota, el usuario debe dirigirse al formulario de "Agregar Notas".
+   - En este formulario, se requiere que el usuario ingrese un título y un contenido para la nota.
+   - Después de completar los campos requeridos, el usuario puede hacer clic en el botón "Crear Nota" para guardar la nota en la base de datos y se muestre la nota creada.
+
+2. Editar Notas:
+   - Una vez que se han creado notas, el usuario puede editarlas en cualquier momento.
+   - Para editar una nota existente, el usuario simplemente necesita hacer clic en la nota que desea modificar.
+   - Esto abrirá la nota en un modo de edición, donde el usuario puede realizar los cambios necesarios en el título y el contenido de la nota.
+   - Después de realizar las modificaciones deseadas, el usuario puede guardar los cambios haciendo clic en el botón de guardado correspondiente.
+   - Al finalizar la edicion de la nota puede cerrar el formulario en el respectivo boton de "X"
+
+Durante esta fase inicial del desarrollo, nos hemos centrado en proporcionar una experiencia fluida y fácil de usar para la creación y edición de notas. Esta funcionalidad básica sienta las bases para las características adicionales que se implementarán en la segunda mitad de la aplicación.
+
 
 ## Evidencias de Actividades
 
@@ -24,7 +43,7 @@ Para acceder a las evidencias de las actividades realizadas o programadas, puede
 
 Adjunto encontrarás un archivo PDF con más detalles sobre la aplicación:
 
-[Descargar Archivo PDF](DOCUMENTOPC_DSS)
+[Descargar Archivo PDF](DOCUMENTOPC_DSS.pdf)
 
 ## Mockups en Figma
 
@@ -55,3 +74,4 @@ Desarrollado por [Jose Rolando Alvarez Mejia](https://github.com/Josepo616).
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [License.tx](License.tx) para más detalles.
+
