@@ -30,6 +30,10 @@ CREATE TABLE IF NOT EXISTS recordatorios (
     FOREIGN KEY (nota_id) REFERENCES notas(id)
 );
 
+-- Modificar la tabla notas para incluir color_fondo en formato hexadecimal
+ALTER TABLE notas
+ADD color_fondo VARCHAR(7); -- Para almacenar códigos hexadecimales de 6 caracteres más el signo #
+
 -- Procedimiento almacenado para agregar una nota
 DELIMITER //
 CREATE PROCEDURE AgregarNota(

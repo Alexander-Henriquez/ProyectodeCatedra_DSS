@@ -9,23 +9,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupera los datos del formulario enviado por el método POST
     $titulo = $_POST["titulo"];
     $contenido = $_POST["contenido"];
+    $color_fondo = $_POST["color_fondo"];
 
+    // Verifica si la variable de sesión 'id' está definida
     if (isset($_SESSION['id'])) {
         $usuario_id = $_SESSION['id'];
-        echo "El ID de usuario es: $id_usuario";
     } else {
-        echo "La variable de sesión 'id_usuario' no está definida.";
+        echo "La variable de sesión 'id' no está definida.";
+        exit(); // Sale del script si la variable de sesión no está definida
     }
-    //$usuario_id = $_POST["usuario_id"]; 
 
     try {
         // Prepara la consulta SQL para insertar una nueva nota en la base de datos
-        $stmt = $conn->prepare("INSERT INTO notas (usuario_id, titulo, contenido) VALUES (:usuario_id, :titulo, :contenido)");
+        $stmt = $conn->prepare("INSERT INTO notas (usuario_id, titulo, contenido, color_fondo) VALUES (:usuario_id, :titulo, :contenido, :color_fondo)");
 
         // Vincula los parámetros de la consulta con las variables obtenidas del formulario
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->bindParam(':titulo', $titulo);
         $stmt->bindParam(':contenido', $contenido);
+        $stmt->bindParam(':color_fondo', $color_fondo);
         
         // Ejecuta la consulta SQL
         $stmt->execute();
@@ -42,4 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: Notes.php");
     exit();
 }
-?>
