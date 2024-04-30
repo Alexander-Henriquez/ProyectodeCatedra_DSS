@@ -26,6 +26,8 @@
     <form action="../php/crear_nota.php" method="POST" id="formulario" style="display: none;"> <!-- Formulario para crear una nota -->
       <input type="text" id="titulo" name="titulo" placeholder="Titulo" required><br> <!-- Campo para el título de la nota -->
       <textarea id="contenido" name="contenido" rows="2" cols="50" placeholder="Crear una nota" required></textarea><br> <!-- Área para el contenido de la nota -->
+      <label for="color_fondo">Seleccione un color de fondo</label> <!-- Etiqueta para el campo de color de fondo -->
+      <input type="color" id="color_fondo" name="color_fondo" value="#464952" required><br> <!-- Campo para el color de fondo de la nota -->
       <input type="hidden" name="usuario_id" value="1"> <!-- Campo oculto para el ID del usuario -->
       <input type="submit" value="Crear Nota"> <!-- Botón para enviar el formulario y crear la nota -->
     </form>
@@ -48,8 +50,3 @@
   <script src="../js/Notes.js"></script> 
 </body>
 </html>
-
-
-
-
-  
