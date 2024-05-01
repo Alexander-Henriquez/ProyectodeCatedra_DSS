@@ -19,6 +19,7 @@ while ($row = $result->fetch_array()) {
     echo "<article class='notaMostrada' id='" . $row['id'] . "' style='background-color: " . $row['color_fondo'] . "'>";
     echo "<h2>Título:</h2> <h3>" . $row['titulo'] . "</h3><br>";
     echo "<h2>Contenido:</h2> <p>" . nl2br($row['contenido']) . "</p><br><br>";
+    echo "<button class='button-eliminar' onclick='enviarAPapelera(" . $row['id'] . ")'>Eliminar</button>";
     echo "</article>";
 
 
@@ -44,3 +45,23 @@ while ($row = $result->fetch_array()) {
 }
 
 ?>
+
+
+<script> /*Utilizamos javascript para mostrar una alert 
+            para confirmar la eliminación de la nota */
+            
+    function enviarAPapelera(idNota) {
+    if (confirm("¿Estás seguro de que quieres eliminar esta nota?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Actualizar la página después de eliminar la nota
+                location.reload();
+            }
+        };
+        xhr.open("POST", "eliminar_nota.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("idNota=" + idNota);
+    }
+}
+</script>
