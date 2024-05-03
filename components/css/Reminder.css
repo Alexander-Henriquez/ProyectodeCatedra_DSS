@@ -1,0 +1,80 @@
+#agregarRecordatorio{
+    color: rgb(255, 253, 253); /* Color del texto */
+    cursor: pointer; /* Cursor de puntero */
+    font-size: 12px; /* Tamaño de la fuente */
+    font-weight: bold; /* Establece el peso de la fuente en negrita */
+}
+
+
+
+.input-fecha {
+    background-color: rgb(255, 253, 253);
+    width: 40%; /* Ajusta el ancho según sea necesario */
+    padding: 10px; /* Aumenta el espacio alrededor del texto */
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 25px;
+    box-sizing: border-box; /* Incluye el relleno en el ancho total */
+    font-size: 16px; /* Tamaño del texto */
+    outline: none; /* Elimina el contorno al hacer clic */
+    transition: border-color 0.3s; /* Agrega una transición suave al color del borde */
+}
+
+/* Estilo para el campo de fecha al pasar el mouse sobre él */
+.input-fecha:hover {
+    border-color: #007bff; /* Cambia el color del borde al pasar el mouse */
+}
+
+/* Estilo para el campo de fecha cuando está enfocado */
+.input-fecha:focus {
+    border-color: #007bff; /* Cambia el color del borde cuando el campo está enfocado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agrega una sombra alrededor del campo enfocado */
+}
+
+/* Estilos para el contenedor de recordatorios */
+.recordatorio-container {
+    background-color: #f8f9fa; /* Color de fondo */
+    border: 1px solid #ced4da; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+/* Estilos para el título del recordatorio */
+.recordatorio-titulo {
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    color: #007bff; /* Color de texto */
+    margin-bottom: 5px; /* Margen inferior */
+}
+
+/* Estilos para el contenido del recordatorio */
+.recordatorio-contenido {
+    font-size: 16px; /* Tamaño de fuente */
+    color: #495057; /* Color de texto */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+/* Estilos para la fecha del recordatorio */
+.recordatorio-fecha {
+    font-size: 14px; /* Tamaño de fuente */
+    color: #6c757d; /* Color de texto */
+}
+
+/* Estilos para el botón de eliminar recordatorio */
+.btn-eliminar {
+    background-color: #dc3545; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espaciado interno */
+    cursor: pointer; /* Cursor */
+}
+
+/* Estilos para el botón de eliminar cuando se pasa el mouse */
+.btn-eliminar:hover {
+    background-color: #c82333; /* Cambio de color de fondo */
+}
+
+
+  
