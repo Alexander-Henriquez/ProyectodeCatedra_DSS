@@ -6,6 +6,7 @@ body {
     background: #464952; /* Establece el color de fondo */
 }
 
+
 /* Estilos para el encabezado */
 .header {
     display: flex;
@@ -104,6 +105,29 @@ body {
 .menu ul li a:hover {
     font-weight: bold; /* Establece el peso de la fuente en negrita */
 }
+
+.cerrar-sesion-container {
+    text-align: center; /* Centra el botón */
+}
+
+.cerrar-sesion-btn {
+    background-color: #FF4D4D; /* Color de fondo rojo */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    text-transform: uppercase; /* Mayúsculas */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+.cerrar-sesion-btn:hover {
+    background-color: #FF3333; /* Color de fondo rojo más oscuro en hover */
+}
+
 
 /* Estilos para el ícono del menú */
 .menu-icon {
