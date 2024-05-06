@@ -17,10 +17,7 @@
       <img src="../img/reminders (1).png" alt="Icono de la aplicación" class="app-icon"> 
       <h3 class="app-name">NoteMinder</h3> 
     </div>
-    <div class="search-bar-container">
-      <i class="fas fa-search"></i> 
-      <input type="text" placeholder="Buscar..." class="search-bar"> <!-- Campo de búsqueda -->
-    </div>
+   
     <div class="cerrar-sesion-container">
       <a href="../../inicio.html" class="cerrar-sesion-btn">Cerrar sesión</a>
     </div>
