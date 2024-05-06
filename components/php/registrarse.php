@@ -22,6 +22,13 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $contrasena)) {
     exit(); // Detener el proceso de registro
 }
 
+// Validar el nombre de usuario con expresiones regulares
+if (!preg_match('/^\w{5,15}$/', $usuario)) {
+    // Mostrar una alerta JavaScript
+    echo '<script>alert("El nombre de usuario debe tener entre 5 y 15 caracteres alfanuméricos"); window.history.back();</script>';
+    exit(); // Detener el proceso de registro
+}
+
 // Encriptamiento de contraseña
 $contrasena = hash('sha512', $contrasena);
 

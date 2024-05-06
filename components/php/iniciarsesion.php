@@ -28,7 +28,21 @@ $resultado_final = $resultado['resultado'];
 
 // Redirigir según el resultado del procedimiento almacenado
 if ($resultado_final == 1) {
-    header("Location: ../html/Notes.html");
+
+    // Obtener el ID del usuario para guardarlo en la variable de sesión
+    $conexion = conexion();
+    $ssql = "SELECT `id` FROM `usuarios` WHERE `correo` = '$correo'";
+    $result = $conexion->query($ssql);
+    session_start();
+    if ($result->num_rows > 0) {
+        // Usuario autenticado correctamente, obtener su ID
+    $row = $result->fetch_assoc();
+    
+    // Guardar el ID del usuario en una variable de sesión
+    $_SESSION['id'] = $row['id'];
+    }
+
+    header("Location: Notes.php");
     exit();
 } else {
     echo '
