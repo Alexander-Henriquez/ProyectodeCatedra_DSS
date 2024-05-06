@@ -36,22 +36,26 @@ document.addEventListener("DOMContentLoaded", function() {
         this.style.height = (this.scrollHeight) + 'px';
     });
 
+    // Función para cerrar sesión y eliminar la página anterior del historial
+    function cerrarSesion() {
+        // Eliminar la página anterior del historial del navegador
+        window.history.pushState(null, null, '../../inicio.html');
+        return true; // Continuar con el enlace después de ejecutar la función
+    }
+
     //Abrir modal
 
-// Obtener todos los elementos con la clase "modal"
-var modals = document.querySelectorAll("div.modal");
+    // Obtener todos los elementos con la clase "modal"
+    var modals = document.querySelectorAll("div.modal");
 
-// Iterar sobre cada modal
-modals.forEach(function(modal) {
+    // Iterar sobre cada modal
+    modals.forEach(function(modal) {
+        modal.previousElementSibling.addEventListener('click', function() {
+            modal.style.display = "block";
+        });
 
-    modal.previousElementSibling.addEventListener('click', function() {
-        modal.style.display = "block";
-    });
-
-    modal.querySelector('.close').addEventListener('click', function() {
-        modal.style.display = "none";
+        modal.querySelector('.close').addEventListener('click', function() {
+            modal.style.display = "none";
+        });
     });
 });
-
-});
-
