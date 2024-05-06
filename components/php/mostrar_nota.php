@@ -13,20 +13,22 @@ $conexion = conexion(); // Conexión a la base de datos
 // Consulta SQL para mostrar las notas del usuario
 $ssql = "SELECT `id`, `titulo`, `contenido`, `color_fondo` FROM `notas` WHERE `usuario_id` = '$usuarioId'";
 $result = $conexion->query($ssql);
-
+echo "<link rel='stylesheet' href='../css/Eliminarbtn.css'>";
 // Mostrar los resultados
 while ($row = $result->fetch_array()) {
     echo "<article class='notaMostrada' id='" . $row['id'] . "' style='background-color: " . $row['color_fondo'] . "'>";
     echo "<h2>Título:</h2> <h3>" . $row['titulo'] . "</h3><br>";
     echo "<h2>Contenido:</h2> <p>" . nl2br($row['contenido']) . "</p><br><br>";
-    echo "<button class='button-eliminar' onclick='enviarAPapelera(" . $row['id'] . ")'>Eliminar</button>";
+    echo "<div style='text-align: center;'class='button-container'>
+            <button class='button' onclick='enviarAPapelera(".$row['id'].")'>Eliminar</button>
+        </div>";
     echo "</article>";
 
 
 
-    echo "<div id='myModal' class='modal'>";
+    echo "<div id='myModal' class='modal' style='cursor:auto;'>";
     echo "<div class='modal-content'>";
-    echo "<span class='close'>&times;</span>";
+    echo "<span class='close' >&times;</span>";
     // Iniciar el formulario
     echo "<form action='../php/update_note.php' method='post'>";
 
