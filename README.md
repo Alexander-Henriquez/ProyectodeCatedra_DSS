@@ -32,6 +32,23 @@ Durante la primera mitad del desarrollo de esta aplicación, nos enfocamos en pr
 
 Durante esta fase inicial del desarrollo, nos hemos centrado en proporcionar una experiencia fluida y fácil de usar para la creación y edición de notas. Esta funcionalidad básica sienta las bases para las características adicionales que se implementarán en la segunda mitad de la aplicación.
 
+## Funcionalidades Segundo 50%
+
+- Crear diferentes tipos de recordatorios.
+
+## Segundo 50% de la Aplicación: Crear y Editar Notas
+Claro, aquí tienes un texto similar enfocado en la creación y edición de recordatorios:
+
+Durante la primera etapa del desarrollo de esta aplicación, nos hemos concentrado en ofrecer a los usuarios la capacidad de crear y editar recordatorios de manera efectiva. A continuación, se describen los pasos para utilizar estas funcionalidades:
+
+1. Crear Recordatorios:
+   - Para agregar un nuevo recordatorio, el usuario debe dirigirse al formulario "Crear Recordatorio".
+   - En este formulario, se solicita al usuario ingresar un título, contenido, fecha y hora para el recordatorio.
+   - al mismo tiempo se le dara la posibilidad de poder anadir un color al recordatorio
+   - Después de completar los campos requeridos, el usuario puede hacer clic en el botón "Crear Recordatorio" para guardar la información en la base de datos y crear el recordatorio.
+   - el recordatorio se mostrara como una notificacion en pantalla mencionando el recordatorio, fecha y hora
+
+Durante esta fase inicial del desarrollo, nos hemos enfocado en proporcionar una experiencia fluida y fácil de usar para la creación y edición de recordatorios. Esta funcionalidad básica sienta las bases para las características adicionales que se implementarán en la siguiente etapa de la aplicación.
 
 ## Evidencias de Actividades
 
