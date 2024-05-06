@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,6 +21,9 @@
       <i class="fas fa-search"></i> 
       <input type="text" placeholder="Buscar..." class="search-bar"> <!-- Campo de búsqueda -->
     </div>
+    <div class="cerrar-sesion-container">
+      <a href="../../inicio.html" class="cerrar-sesion-btn"onclick="return cerrarSesion()">Cerrar sesión</a>
+    </div>
   </header>
   <div class="formulario-container">
     <p id="agregarNota">Crear una nota...</p> <!-- Texto para agregar una nota -->
@@ -41,7 +45,6 @@
     <ul>
       <li><a href="Notes.php" id="notas"><img src="../img/documento.png" alt="Icono de notas" class="menu-icon"> Notas</a></li> <!-- Opción del menú para notas -->
       <li><a href="Reminder.php" id="recordatorio"><img src="../img/campana.png" alt="Icono de recordatorio" class="menu-icon"> Recordatorios</a></li> <!-- Opción del menú para recordatorios -->
-      <li><a href="#" id="papelera"><img src="../img/tacho-de-reciclaje.png" alt="Icono de papelera" class="menu-icon"> Papelera</a></li> <!-- Opción del menú para la papelera -->
     </ul>
   </nav>
   
