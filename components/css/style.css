@@ -3,7 +3,9 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
 }
-
+html {
+    cursor: url(../img/spaceship.png), auto;
+}
 .blue-section {
     background-color: #3A4474;
     color: #fff;
