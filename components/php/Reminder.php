@@ -25,13 +25,26 @@
       <a href="../../inicio.html" class="cerrar-sesion-btn">Cerrar sesión</a>
     </div>
 </header>
-
+<?php 
+date_default_timezone_set('America/Mexico_City');
+// Obtiene la hora actual
+$hora_actual = date('H:i');
+$fecha_actual = date('Y-m-d');
+// Suma 30 minutos a la hora actual
+$nueva_hora = date('H:i', strtotime($hora_actual . ' + 30 minutes'));
+?>
 <div class="formulario-container">
     <p id="agregarRecordatorio">Crear Recordatorio...</p> <!-- Texto para agregar un recordatorio -->
     <form action="../php/crear_recordatorio.php" method="POST" id="formularioRecordatorio" style="display: none;">
         <input type="text" name="titulo" class="input-titulo" placeholder="Título del recordatorio" required><br>
         <textarea name="contenido" class="input-contenido" placeholder="Contenido del recordatorio" required></textarea><br>
-        <input type="datetime-local" id="fecha_recordatorio" name="fecha_recordatorio" class="input-fecha" required><br>
+        
+        <label for="color_fondo" >Seleccione un color de fondo</label> <!-- Etiqueta para el campo de color de fondo -->
+        <input type="color" id="color_fondo" name="color_fondo" value="#464952" required><br><br> <!-- Campo para el color de fondo de la nota -->
+
+        <input type="date" id="date" name="fecha_recordatorio" class="input-fecha" min="<?php echo $fecha_actual ?>" value="<?php echo $fecha_actual; ?>" required /><br>
+        <input type="time" id="time" name="hora_recordatorio" class="input-fecha" value="<?php echo $hora_actual; ?>" required /><br>
+
         <input type="submit" class="btn-crear" value="Crear Recordatorio">
     </form>
 </div>
@@ -44,7 +57,6 @@
     <ul>
       <li><a href="Notes.php" id="notas"><img src="../img/documento.png" alt="Icono de notas" class="menu-icon"> Notas</a></li> <!-- Opción del menú para notas -->
       <li><a href="Reminder.php" id="recordatorio"><img src="../img/campana.png" alt="Icono de recordatorio" class="menu-icon"> Recordatorios</a></li> <!-- Opción del menú para recordatorios -->
-      <li><a href="#" id="papelera"><img src="../img/tacho-de-reciclaje.png" alt="Icono de papelera" class="menu-icon"> Papelera</a></li> <!-- Opción del menú para la papelera -->
     </ul>
   </nav>
   
