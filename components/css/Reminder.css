@@ -19,7 +19,27 @@
     outline: none; /* Elimina el contorno al hacer clic */
     transition: border-color 0.3s; /* Agrega una transición suave al color del borde */
 }
+.cerrar-sesion-container {
+    text-align: center; /* Centra el botón */
+}
 
+.cerrar-sesion-btn {
+    background-color: #FF4D4D; /* Color de fondo rojo */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    text-transform: uppercase; /* Mayúsculas */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+.cerrar-sesion-btn:hover {
+    background-color: #FF3333; /* Color de fondo rojo más oscuro en hover */
+}
 /* Estilo para el campo de fecha al pasar el mouse sobre él */
 .input-fecha:hover {
     border-color: #007bff; /* Cambia el color del borde al pasar el mouse */
@@ -75,6 +95,3 @@
 .btn-eliminar:hover {
     background-color: #c82333; /* Cambio de color de fondo */
 }
-
-
-  
