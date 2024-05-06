@@ -36,7 +36,7 @@ Durante esta fase inicial del desarrollo, nos hemos centrado en proporcionar una
 
 - Crear diferentes tipos de recordatorios.
 
-## Segundo 50% de la Aplicación: Crear y Editar Notas
+## Segundo 50% de la Aplicación: Crar Recordatorio y Notificar
 Claro, aquí tienes un texto similar enfocado en la creación y edición de recordatorios:
 
 Durante la primera etapa del desarrollo de esta aplicación, nos hemos concentrado en ofrecer a los usuarios la capacidad de crear y editar recordatorios de manera efectiva. A continuación, se describen los pasos para utilizar estas funcionalidades:
